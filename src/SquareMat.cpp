@@ -249,7 +249,7 @@ void SquareMat::create(){
     for (size_t i = 0; i < mat.size(); i++){
     	this->mat.at(i).resize(dim);
     }
-    std::cout<<"Inserisci gli elementi della matrice:\n";
+    std::cout<<"\nInserisci gli elementi della matrice:\n\n";
     this->read();
     this->print();
 }
