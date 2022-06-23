@@ -12,6 +12,7 @@ void menu(){
     std::cout<<"[9] Calcolare il rango di una matrice\n[10] Ridurre una matrice a scalini\n[11] Uscire\n\n";
 
     std::cin>>mode;
+    std::cout<<std::endl;
 
     if (mode < 1 || mode > 11){
         while (mode < 1 || mode > 11){
@@ -23,7 +24,20 @@ void menu(){
     switch(mode){
         case 1:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
 
             std::cout<<"Inserisci una riga e una colonna da eliminare (righe e colonne partono da 0).\nRiga: ";
             int row, col;
@@ -38,7 +52,20 @@ void menu(){
             break;
         case 2:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
 
             std::cout<<"Determinante: ";
             m.determinant().print();
@@ -47,18 +74,44 @@ void menu(){
             break;
         case 3:
         {
-            SquareMat m = m.create();
-            SquareMat p = p.create();
+            SquareMat m;
+            SquareMat p;
+
+            try { m.create(); p.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
 
             SquareMat res = m * p;
-            std::cout<<"Matrice prodotto:\n";
+            std::cout<<"\nMatrice prodotto:\n";
             res.print();
         }
             break;
         case 4:
         {
-            SquareMat m = m.create();
-            SquareMat p = p.create();
+            SquareMat m;
+            SquareMat p;
+
+            try { m.create(); p.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
 
             SquareMat res = m + p;
             std::cout<<"Matrice somma:\n";
@@ -67,7 +120,21 @@ void menu(){
             break;
         case 5:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
+
             SquareMat tr = m.transpose();
             std::cout<<"Matrice trasposta:\n";
             tr.print();
@@ -75,7 +142,21 @@ void menu(){
             break;
         case 6:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
+
             SquareMat inv = m.inverse();
             std::cout<<"Matrice inversa:\n";
             inv.print();
@@ -83,7 +164,21 @@ void menu(){
             break;
         case 7:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
+
             if (m.orthogonal())
                 std::cout<<"La matrice è ortogonale.\n";
             else
@@ -92,7 +187,21 @@ void menu(){
             break;
         case 8:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
+
             if (m.allprimes())
                 std::cout<<"La matrice è composta interamente da numeri primi.\n";
             else
@@ -101,13 +210,42 @@ void menu(){
             break;
         case 9:
         {
-            SquareMat m = m.create();
-            std::cout<<"Rango: "<<m.rank()<<std::endl;
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
+
+            int rk = m.rank();
+            std::cout<<"Rango: "<<rk<<std::endl;
         }
             break;
         case 10:
         {
-            SquareMat m = m.create();
+            SquareMat m;
+
+            try { m.create(); }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix)
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                if (e.t == matrix_exception::invalid_format)
+                    std::cout<<"\nFormato non valido."<<std::endl;
+                menu();
+            }
+            catch(rational_exception& e){
+                std::cout<<"\nAlmeno un numero presenta un formato non valido."<<std::endl;
+                menu();
+            }
+
             SquareMat meg = m.MEG();
             std::cout<<"Matrice ridotta a scalini:\n";
             meg.print();
@@ -120,7 +258,7 @@ void menu(){
         default:
             break;
     }
-    if (mode != 11) menu();
+    if (mode) menu();
 }
 
 int main() {

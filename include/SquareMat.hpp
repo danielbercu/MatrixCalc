@@ -7,6 +7,12 @@
 #include <vector>
 #include "Rational.hpp"
 
+struct matrix_exception{
+  enum err_type {null_matrix, invalid_format};
+  err_type t;
+  std::string msg;
+};
+
 class SquareMat {
   public:
   	SquareMat();
@@ -29,7 +35,7 @@ class SquareMat {
     bool orthogonal() const;				//Checks if the matrix is orthogonal
     SquareMat operator * (SquareMat a) const;	// *
     SquareMat operator + (SquareMat a) const;	// +
-    SquareMat create();
+    void create();
     int rank() const;
     SquareMat MEG() const;
     bool empty() const;

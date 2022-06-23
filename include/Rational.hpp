@@ -5,6 +5,12 @@
 
 #include <iostream>
 
+struct rational_exception{
+  enum err_type {invalid_format};
+  err_type t;
+  std::string msg;
+};
+
 class Rational {
   public:
   	Rational();

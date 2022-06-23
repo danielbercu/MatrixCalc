@@ -20,13 +20,19 @@ void Rational::read(){
 	int n, d;
 	std::string first, second;
 	size_t i = 0;
-	while (i < in.length() && in.at(i) != '/'){
+	while (i < in.length() && in.at(i) >= '0' && in.at(i) <= '9'){
 		first.push_back(in.at(i));
 		i++;
 	}
 	if (i < in.length()){
+		if (in.at(i) != '/'){
+			throw rational_exception{rational_exception::invalid_format, "Formato non valido"};
+		}
 		i++;
 		while (i < in.length()){
+			if (in.at(i) < '0' && in.at(i) > '9'){
+				throw rational_exception{rational_exception::invalid_format, "Formato non valido.\n"};
+			}
 			second.push_back(in.at(i));
 			i++;
 		}

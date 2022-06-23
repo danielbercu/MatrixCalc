@@ -3,7 +3,9 @@
 #include "SquareMat.hpp"
 #include "Rational.hpp" 
 
-SquareMat::SquareMat(){};
+SquareMat::SquareMat(){
+	this->mat.resize(0);
+};
 
 // predefinita
 void SquareMat::read() {
@@ -224,26 +226,41 @@ SquareMat SquareMat::operator+ (SquareMat a) const{
 	return sum;
 }
 
-SquareMat SquareMat::create(){
-	int dim;
+void SquareMat::create(){
+	int dim = -1;
+	std::string in;
 	std::cout<<"Inserisci la lunghezza della riga/colonna della matrice: ";
-    std::cin>>dim;
-    if (dim == 0){
-        std::cout<<"Matrice nulla."<<std::endl;
-        exit(0);
+    std::cin>>in;
+    size_t i = 0;
+    while(i < in.length() && in.at(i) >= '0' && in.at(i) <= '9'){
+    	int temp = in.at(i) - 48;
+    	if (dim == -1)
+    		dim = temp;
+    	else
+    		dim += temp;
+    	i++;
     }
-    SquareMat m{dim};
+    if (i != in.length()){
+    	throw matrix_exception{matrix_exception::invalid_format, "Formato non valido.\n"};
+    }
+    if (dim == 0){
+		throw matrix_exception{matrix_exception::null_matrix, "Matrice nulla."};
+	}
+
+    this->mat.resize(dim);
+    for (size_t i = 0; i < mat.size(); i++){
+    	this->mat.at(i).resize(dim);
+    }
     std::cout<<"Inserisci gli elementi della matrice:\n";
-    m.read();
-    m.print();
-    return m;
+    this->read();
+    this->print();
 }
 
 int SquareMat::rank() const{
 	
 	if (empty()){
-		std::cout<<"Rango nullo.\n";
-		exit(0);
+		std::cout<<"Matrice nulla. ";
+		return 0;
 	}
 
 	Rational ZERO{0, 1};
