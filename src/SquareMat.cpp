@@ -146,8 +146,10 @@ SquareMat SquareMat::inverse() const{
 		temp.at(1, 0) = MONE * this->at(1, 0) / this->determinant();
 		temp.at(1, 1) = this->at(0, 0) / this->determinant();
 		for (int i = 0; i < size(); i++)
-			for (int j = 0; j < size(); j++)
+			for (int j = 0; j < size(); j++){
+				temp.at(i, j).simplify();
 				if (temp.at(i, j) == MZERO) temp.at(i, j) = ZERO;
+			}
 	}
 	else{
 		Rational coeff = {1, 1};
@@ -156,6 +158,7 @@ SquareMat SquareMat::inverse() const{
 				coeff = (i + j) % 2 == 0 ? ONE : MONE;
 				temp.at(i, j) = coeff * this->reduce(j, i).determinant() / this->determinant();
 				if (temp.at(i, j) == MZERO) temp.at(i, j) = ZERO;
+				temp.at(i, j).simplify();
 			}
 		}
 	}

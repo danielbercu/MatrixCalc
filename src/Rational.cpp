@@ -212,11 +212,11 @@ Rational Rational::invert(){
 
 void Rational::simplify(){
 	int i = 2;
-	int lowest = num < denom ? num : denom;
+	int lowest = abs(num) < abs(denom) ? abs(num) : abs(denom);
 	while(i < lowest){
-		while ((num % i == 0) && (denom % i == 0)){
-			num /= i;
-			denom /= i;
+		while ((abs(num) % i == 0) && (abs(denom) % i == 0)){
+			num = num < 0 ? -(abs(num)/i) : num / i;
+			denom = denom < 0 ? -(abs(denom)/i) : denom / i;
 		}
 		i++;
 	}
