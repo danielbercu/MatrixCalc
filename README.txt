@@ -1,6 +1,6 @@
 MatrixCalc
 
-	-	A simple calculator to operate with matrices. The name says it all!
+	-	A simple calculator to operate with square matrices. The name says it all!
 
 	-	Link to repository: https://github.com/danielbercu/MatrixCalc
 
