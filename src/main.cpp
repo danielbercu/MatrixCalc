@@ -80,7 +80,6 @@ void menu(){
                 SquareMat res = m * p;
                 std::cout<<"\nMatrice prodotto:\n";
                 res.print();
-                break;
             }
             catch(matrix_exception& e){
                 if (e.t == matrix_exception::impossible_op){
@@ -111,7 +110,6 @@ void menu(){
                 SquareMat res = m + p;
                 std::cout<<"Matrice somma:\n";
                 res.print();
-                break;
             }
             catch(matrix_exception& e){
                 if (e.t == matrix_exception::impossible_op){
@@ -153,15 +151,31 @@ void menu(){
             break;
         case 9:
         {
-            int rk = m.rank();
-            std::cout<<"Rango: "<<rk<<std::endl;
+            try{
+                int rk = m.rank();
+                std::cout<<"Rango: "<<rk<<std::endl;
+            }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix){
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                    menu();
+                }
+            }
         }
             break;
         case 10:
         {
-            SquareMat meg = m.MEG();
-            std::cout<<"Matrice ridotta a scalini:\n";
-            meg.print();
+            try{
+                SquareMat meg = m.MEG();
+                std::cout<<"Matrice ridotta a scalini:\n";
+                meg.print();
+            }
+            catch(matrix_exception& e){
+                if (e.t == matrix_exception::null_matrix){
+                    std::cout<<"\nMatrice nulla."<<std::endl;
+                    menu();
+                }
+            }
         }
             break;
         case 11:

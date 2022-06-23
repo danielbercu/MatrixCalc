@@ -68,6 +68,7 @@ bool Rational::operator == (Rational r) const{
 	Rational first = *this, second = r;
 	first.simplify();
 	second.simplify();
+	if (this->num == 0 && r.num == 0) return true;
 	return first.num == second.num && first.denom == second.denom;
 }
 

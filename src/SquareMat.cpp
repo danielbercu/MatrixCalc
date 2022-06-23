@@ -255,10 +255,8 @@ void SquareMat::create(){
 }
 
 int SquareMat::rank() const{
-	
 	if (empty()){
-		std::cout<<"Matrice nulla. ";
-		return 0;
+		throw matrix_exception{matrix_exception::null_matrix};
 	}
 
 	Rational ZERO{0, 1};
@@ -275,8 +273,7 @@ int SquareMat::rank() const{
 
 SquareMat SquareMat::MEG() const{
 	if (empty()){
-		std::cout<<"Matrice nulla.\n";
-		exit(0);
+		throw matrix_exception{matrix_exception::null_matrix};
 	}
 
 	SquareMat temp {*this};
@@ -284,10 +281,10 @@ SquareMat SquareMat::MEG() const{
 
 	for (int i = 0; i < size(); i++){
 		if (temp.mat.at(i).at(i) == ZERO){
-			int t = i + 1;
+			int t = i;
 			bool modified = false;
 			while(t < size() && !modified){
-				if (!modified && temp.mat.at(t).at(0) != ZERO){
+				if (!modified && temp.mat.at(t).at(i) != ZERO){
 					std::vector<Rational> curr_row = temp.mat.at(i);
 					temp.mat.at(i) = temp.mat.at(t);
 					temp.mat.at(t) = curr_row;
@@ -300,9 +297,8 @@ SquareMat SquareMat::MEG() const{
 		for (int j = i + 1; j < size(); j++){			
 			Rational coeff = temp.at(j, i) * temp.at(i, i).invert();
 			for (int k = 0; k < size(); k++){
-				temp.mat.at(j).at(k) = temp.mat.at(j).at(k) - coeff * temp.mat.at(i).at(k);
+				temp.mat.at(j).at(k) -= coeff * temp.mat.at(i).at(k);
 			}
-
 		}
 	}
 
