@@ -12,4 +12,4 @@ MatrixCalc
 
  	-	Building:
 
- 		$	make
+ 		$ make
