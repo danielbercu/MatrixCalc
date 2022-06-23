@@ -187,7 +187,7 @@ bool SquareMat::orthogonal() const{
 
 SquareMat SquareMat::operator* (SquareMat a) const{
 	if (size() != a.size()){
-		std::cout<<"Impossibile eseguire la moltiplicazione.";
+		std::cout<<"Impossibile eseguire la moltiplicazione. Dimensioni delle matrici diverse.\n";
 		exit(0);
 	}
 	
@@ -206,7 +206,7 @@ SquareMat SquareMat::operator* (SquareMat a) const{
 
 SquareMat SquareMat::operator+ (SquareMat a) const{
 	if (size() != a.size()){
-		std::cout<<"Impossibile eseguire la somma.";
+		std::cout<<"Impossibile eseguire la somma. Dimensioni delle matrici diverse.\n";
 		exit(0);
 	}
 
@@ -225,6 +225,10 @@ SquareMat SquareMat::create(){
 	int dim;
 	std::cout<<"Inserisci la lunghezza della riga/colonna della matrice: ";
     std::cin>>dim;
+    if (dim == 0){
+        std::cout<<"Matrice nulla."<<std::endl;
+        exit(0);
+    }
     SquareMat m{dim};
     std::cout<<"Inserisci gli elementi della matrice:\n";
     m.read();
@@ -233,7 +237,7 @@ SquareMat SquareMat::create(){
 }
 
 int SquareMat::rank() const{
-
+	
 	if (empty()){
 		std::cout<<"Rango nullo.\n";
 		exit(0);
