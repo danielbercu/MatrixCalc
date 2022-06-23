@@ -8,9 +8,8 @@
 #include "Rational.hpp"
 
 struct matrix_exception{
-  enum err_type {null_matrix, invalid_format};
+  enum err_type {null_matrix, invalid_format, impossible_op};
   err_type t;
-  std::string msg;
 };
 
 class SquareMat {

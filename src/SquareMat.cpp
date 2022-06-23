@@ -192,8 +192,7 @@ bool SquareMat::orthogonal() const{
 
 SquareMat SquareMat::operator* (SquareMat a) const{
 	if (size() != a.size()){
-		std::cout<<"Impossibile eseguire la moltiplicazione. Dimensioni delle matrici diverse.\n";
-		exit(0);
+		throw matrix_exception{matrix_exception::impossible_op};
 	}
 	
 	SquareMat prod {size()};
@@ -211,8 +210,7 @@ SquareMat SquareMat::operator* (SquareMat a) const{
 
 SquareMat SquareMat::operator+ (SquareMat a) const{
 	if (size() != a.size()){
-		std::cout<<"Impossibile eseguire la somma. Dimensioni delle matrici diverse.\n";
-		exit(0);
+		throw matrix_exception{matrix_exception::impossible_op};
 	}
 
 	SquareMat sum {size()};
@@ -241,10 +239,10 @@ void SquareMat::create(){
     	i++;
     }
     if (i != in.length()){
-    	throw matrix_exception{matrix_exception::invalid_format, "Formato non valido.\n"};
+    	throw matrix_exception{matrix_exception::invalid_format};
     }
     if (dim == 0){
-		throw matrix_exception{matrix_exception::null_matrix, "Matrice nulla."};
+		throw matrix_exception{matrix_exception::null_matrix};
 	}
 
     this->mat.resize(dim);
