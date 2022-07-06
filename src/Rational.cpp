@@ -203,7 +203,7 @@ bool Rational::operator >= (Rational r) const{
 	return *this > r || *this == r;
 }
 
-Rational Rational::invert(){
+Rational Rational::invert() const{
 	Rational invert = *this;
 	if (num == 0){
 		invert.num = 0;

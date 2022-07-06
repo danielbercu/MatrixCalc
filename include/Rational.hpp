@@ -35,7 +35,7 @@ class Rational {
   	bool operator > (Rational r) const;
   	bool operator <= (Rational r) const;
   	bool operator >= (Rational r) const;
-  	Rational invert();
+  	Rational invert() const;
   	void simplify();
   	int rtoi() const;
   	bool is_integer() const;

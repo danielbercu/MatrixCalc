@@ -300,6 +300,9 @@ SquareMat SquareMat::MEG() const{
 				temp.mat.at(j).at(k) -= coeff * temp.mat.at(i).at(k);
 			}
 		}
+
+		//for (int j = i; j < size(); j++)
+		//	temp.mat.at(i).at(j) /= temp.mat.at(i).at(i);
 	}
 
 	return temp;

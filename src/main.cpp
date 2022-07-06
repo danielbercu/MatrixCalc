@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
 #include "Rational.hpp"
 #include "SquareMat.hpp"
 
 void menu(){
-    int mode = -1;
+    int mode = 0;
+    std::string mode_aux;
     std::cout<<"\n\nScegliere cosa fare\n";
     std::cout<<"[1] Calcolare la matrice aggiunta\n[2] Calcolare il determinante\n";
     std::cout<<"[3] Calcolare il prodotto di due matrici\n[4] Calcolare la somma di due matrici\n";
@@ -11,15 +13,45 @@ void menu(){
     std::cout<<"[7] Verificare se una matrice è ortogonale\n[8] Verificare se una matrice è composta da numeri primi\n";
     std::cout<<"[9] Calcolare il rango di una matrice\n[10] Ridurre una matrice a scalini\n[11] Uscire\n\n";
 
-    std::cin>>mode;
+    std::cin>>mode_aux;
     std::cout<<std::endl;
 
-    if (mode < 1 || mode > 11){
-        while (mode < 1 || mode > 11){
-            std::cout<<"Inserire un numero valido: ";
-            std::cin>>mode;
+    size_t i = 0;
+    bool all_digits = true;
+
+    while(i < mode_aux.length()){
+        std::string temp;
+        temp.push_back(mode_aux.at(i));
+        if (isdigit(temp.at(0))){
+            mode = mode * 10 + std::stoi(temp);
+        }
+        else{
+            all_digits = false;
+        }
+        i++;
+    }
+
+    while(!all_digits || mode < 1 || mode > 11){
+        i = 0;
+        mode = 0;
+        mode_aux.erase(mode_aux.begin(), mode_aux.end());
+        all_digits = true;
+        std::cout<<"Inserisci un numero valido: ";
+        std::cin>>mode_aux;
+        while(i < mode_aux.length()){
+            std::string temp;
+            temp.push_back(mode_aux.at(i));
+            if (isdigit(temp.at(0))){
+                mode = mode * 10 + std::stoi(temp);
+            }
+            else{
+                all_digits = false;
+            }
+            i++;
         }
     }
+
+    std::cout<<std::endl;
 
     SquareMat m;
 
